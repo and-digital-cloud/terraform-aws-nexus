@@ -75,32 +75,43 @@ No provider.
 
 ### Table Required Variables
 
-| Variable Name      | Default Value             | Description          |
-| ------------------ | ------------------------- | -------------------- |
-| company_name       | Change this to the client | Name of the company  |
-| lb_ingress_rules   | null                      | allowed ips to nexus |
-|                    |                           |                      |
-| available_zones    |                           |                      |
-| vpc_id             |                           |                      |
-| private_subnet_ids |                           |                      |
-| public_subnet_ids  |                           |                      |
-|                    |                           |                      |
-|                    |                           |                      |
+| Variable Name      | Default Value             | Description                                                 |
+| ------------------ | ------------------------- | ----------------------------------------------------------- |
+| Set Inputs         | ---------------           | ---------------                                             |
+| company_name       | Change this to the client | Name of the company                                         |
+| lb_ingress_rules   | null                      | allowed ips to nexus                                        |
+| Project_name       | ""                        |                                                             |
+|                    |                           |                                                             |
+| VPC                | ---------------           | ---------------                                             |
+| available_zones    | ""                        |                                                             |
+| vpc_id             | ""                        | ID of the VPC                                               |
+| private_subnet_ids | ""                        | A list of private subnets inside the VPC                    |
+| public_subnet_ids  | ""                        | A list of the subnet subnet inside the VPC                  |
+|                    |                           |                                                             |
+| Route53 and KMS    | ---------------           | ---------------                                             |
+| kms_arn            | "*"                       | The ARN of the KMS Key to use when encrypting SSM for Nexus |
+| acm_wildcard_arn   | ""                        | ARN of the certificate                                      |
+| public_zone_id     | ""                        | ID of the DNS zone                                          |
+
+It is recommended to use the Terraform `VPC`, `Route53` and `acm` registries for the variables within the VPC respective services.
+
 
 ### Table Optional Variables
 
-To include telegraf
-| Variable Name      | Default Value | Description          |
-| ------------------ | ------------- | -------------------- |
-| install_telegraf   | false         | Installig telegraf  |
-| lb_ingress_rules   | null          | allowed ips to nexus |
-|                    |               |                      |
-| available_zones    |               |                      |
-| vpc_id             |               |                      |
-| private_subnet_ids |               |                      |
-| public_subnet_ids  |               |                      |
-|                    |               |                      |
-|                    |               |                      |
+| Variable Name          | Default Value   | Description                                                                                  |
+| ---------------------- | --------------- | -------------------------------------------------------------------------------------------- |
+| telegraf               | --------------- | ---------------                                                                              |
+| install_telegraf       | false           | Installing telegraf                                                                          |
+| metric_user            | null            | Nexus username for the metrics user                                                          |
+| metric_password        | null            | metrics user password to scrape metrics from prometheus endpoint                             |
+| influxdb_database      | null            | Destination database on the influxdb instance                                                |
+| influxdb_endpoint      | null            | Hostname & port of the influxdb server or load balancer in this format http://example.com:80 |
+|                        |                 |                                                                                              |
+| load balancer          | --------------- | ---------------                                                                              |
+| listener_arn           | ""              | ARN of the listener                                                                          |
+| # create_load_balancer | false           | Set to true when you have your own load balancer and import the listener_arn                 |
+|                        |                 |
+
 
 ## Outputs
 
