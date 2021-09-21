@@ -68,67 +68,16 @@ module "nexus" {
 
 <!--- BEGIN_TF_DOCS --->
 ## Providers
-```
-provider "aws" {
-  region  = "eu-west-1"
-  profile = ""
-}
 
-terraform {
-  backend "s3" {
-  }
-}
-```
+No provider.
 
 ## Inputs
 
-### Table Required Variables
-
-| Variable Name      | Default Value             | Description                                                 |
-| ------------------ | ------------------------- | ----------------------------------------------------------- |
-| Set Inputs         | ---------------           | ---------------                                             |
-| company_name       | Change this to the client | Name of the company                                         |
-| lb_ingress_rules   | null                      | allowed ips to nexus                                        |
-| Project_name       | ""                        |                                                             |
-|                    |                           |                                                             |
-| VPC                | ---------------           | ---------------                                             |
-| available_zones    | ""                        |                                                             |
-| vpc_id             | ""                        | ID of the VPC                                               |
-| private_subnet_ids | ""                        | A list of private subnets inside the VPC                    |
-| public_subnet_ids  | ""                        | A list of the subnet subnet inside the VPC                  |
-|                    |                           |                                                             |
-| Route53 and KMS    | ---------------           | ---------------                                             |
-| kms_arn            | "*"                       | The ARN of the KMS Key to use when encrypting SSM for Nexus |
-| acm_wildcard_arn   | ""                        | ARN of the certificate                                      |
-| public_zone_id     | ""                        | ID of the DNS zone                                          |
-
-It is recommended to use the Terraform `VPC`, `Route53` and `acm` registries for the variables within the VPC respective services.
-
-
-### Table Optional Variables
-
-| Variable Name          | Default Value   | Description                                                                                  |
-| ---------------------- | --------------- | -------------------------------------------------------------------------------------------- |
-| telegraf               | --------------- | ---------------                                                                              |
-| install_telegraf       | false           | Installing telegraf                                                                          |
-| metric_user            | null            | Nexus username for the metrics user                                                          |
-| metric_password        | null            | metrics user password to scrape metrics from prometheus endpoint                             |
-| influxdb_database      | null            | Destination database on the influxdb instance                                                |
-| influxdb_endpoint      | null            | Hostname & port of the influxdb server or load balancer in this format http://example.com:80 |
-|                        |                 |                                                                                              |
-| load balancer          | --------------- | ---------------                                                                              |
-| listener_arn           | ""              | ARN of the listener                                                                          |
-| # create_load_balancer | false           | Set to true when you have your own load balancer and import the listener_arn                 |
-|                        |                 |
-
+No input.
 
 ## Outputs
 
-| Output Name | value                               |
-| ----------- | ----------------------------------- |
-| dns_name    | aws_lb.load_balancer.*.dns_name     |
-| asg_arn     | aws_autoscaling_group.dev_nexus.arn |
-| efs_arn     | aws_efs_file_system.efs_nexus.arn   |
+No output.
 <!--- END_TF_DOCS --->
 
 ## License
