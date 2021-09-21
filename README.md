@@ -1,10 +1,10 @@
 This is a template repo, you will need to update:
 
-- [ ] Update links in the contributing.md
-- [ ] Links in the readme.md
+- [x] Update links in the contributing.md
+- [x] Links in the readme.md
 - [ ] Headings in the readme.md
 - [ ] The readme.md content
-- [ ] Link at the top of .releaserc
+- [x] Link at the top of .releaserc
 - [ ] Add at least a completed example in the examples folder
 
 Notes:
@@ -12,7 +12,7 @@ Notes:
 - Terraform docs will populate the inputs and outputs during pipeline run 
 - Delete these sections when finished 
 
-# terraform-aws-template [![Build Status](https://github.com/and-digital/terraform-aws-template/workflows/build/badge.svg)](https://github.com/and-digital/terraform-aws-template/actions)
+# terraform-aws-template [![Build Status](https://github.com/and-digital/terraform-aws-template/workflows/build/badge.svg)](https://github.com/and-digital-cloud/terraform-aws-template)
 
 > A terraform module for creating AWS template resources.
 
@@ -24,7 +24,7 @@ Notes:
 
 ## Maintenance
 
-This project is maintained [AND Digital](https://github.com/and-digital), anyone is welcome to contribute.
+This project is maintained [AND Digital](https://github.com/and-digital-cloud), anyone is welcome to contribute.
 
 ## Getting Started
 
@@ -32,8 +32,35 @@ This project is maintained [AND Digital](https://github.com/and-digital), anyone
 
 
 ```
-module "template" {
+module "nexus" {
   source = "../../"
+
+   # VPC
+  available_zones    = dependency.vpc.outputs.azs
+  vpc_id             = dependency.vpc.outputs.vpc_id
+  private_subnet_ids = dependency.vpc.outputs.private_subnets
+  public_subnet_ids  = dependency.vpc.outputs.public_subnets
+  
+  # KMS and Route53
+  kms_arn            = dependency.global.outputs.kms_key_arn
+  acm_wildcard_arn   = dependency.global.outputs.acm_cert_arn
+  public_zone_id     = dependency.global.outputs.zone_id
+
+  # Set Inputs
+  company_name         = ""
+  lb_ingress_rules     = ["255.255.255.255/32"]
+  project_name         = ""
+
+  # Telegraf
+  install_telegraf  = false
+  metrics_user      = "metrics"
+  metrics_password  = ""
+  influxdb_database = "telegraf"
+  influxdb_endpoint = ""
+
+  # Listener (optional)
+  # create_load_balancer = false
+  # listener_arn         = ""
 
   an example
 
@@ -46,7 +73,34 @@ No provider.
 
 ## Inputs
 
-No input.
+### Table Required Variables
+
+| Variable Name      | Default Value             | Description          |
+| ------------------ | ------------------------- | -------------------- |
+| company_name       | Change this to the client | Name of the company  |
+| lb_ingress_rules   | null                      | allowed ips to nexus |
+|                    |                           |                      |
+| available_zones    |                           |                      |
+| vpc_id             |                           |                      |
+| private_subnet_ids |                           |                      |
+| public_subnet_ids  |                           |                      |
+|                    |                           |                      |
+|                    |                           |                      |
+
+### Table Optional Variables
+
+To include telegraf
+| Variable Name      | Default Value | Description          |
+| ------------------ | ------------- | -------------------- |
+| install_telegraf   | false         | Installig telegraf  |
+| lb_ingress_rules   | null          | allowed ips to nexus |
+|                    |               |                      |
+| available_zones    |               |                      |
+| vpc_id             |               |                      |
+| private_subnet_ids |               |                      |
+| public_subnet_ids  |               |                      |
+|                    |               |                      |
+|                    |               |                      |
 
 ## Outputs
 
@@ -55,4 +109,4 @@ No output.
 
 ## License
 
-Apache 2 Licensed. See [HERE](https://github.com/and-digital/terraform-aws-template/tree/master/LICENSE) for full details.
+Apache 2 Licensed. See [HERE](https://github.com/and-digital-cloud/terraform-aws-nexus/blob/master/LICENSE) for full details.

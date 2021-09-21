@@ -1,5 +1,5 @@
 {
-  'repositoryUrl': 'https://github.com/and-digital/terraform-aws-template',
+  'repositoryUrl': 'https://github.com/and-digital-cloud/terraform-aws-nexus',
   'tagFormat': 'v${version}',
   'branch': 'master',
   'plugins': [
