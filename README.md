@@ -2,8 +2,8 @@ This is a template repo, you will need to update:
 
 - [x] Update links in the contributing.md
 - [x] Links in the readme.md
-- [ ] Headings in the readme.md
-- [ ] The readme.md content
+- [x] Headings in the readme.md
+- [x] The readme.md content
 - [x] Link at the top of .releaserc
 - [ ] Add at least a completed example in the examples folder
 
@@ -68,8 +68,17 @@ module "nexus" {
 
 <!--- BEGIN_TF_DOCS --->
 ## Providers
+```
+provider "aws" {
+  region  = "eu-west-1"
+  profile = ""
+}
 
-No provider.
+terraform {
+  backend "s3" {
+  }
+}
+```
 
 ## Inputs
 
@@ -115,7 +124,11 @@ It is recommended to use the Terraform `VPC`, `Route53` and `acm` registries for
 
 ## Outputs
 
-No output.
+| Output Name | value                               |
+| ----------- | ----------------------------------- |
+| dns_name    | aws_lb.load_balancer.*.dns_name     |
+| asg_arn     | aws_autoscaling_group.dev_nexus.arn |
+| efs_arn     | aws_efs_file_system.efs_nexus.arn   |
 <!--- END_TF_DOCS --->
 
 ## License
