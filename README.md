@@ -12,7 +12,7 @@ Notes:
 - Terraform docs will populate the inputs and outputs during pipeline run 
 - Delete these sections when finished 
 
-# terraform-aws-template [![Build Status](https://github.com/and-digital/terraform-aws-template/workflows/build/badge.svg)](https://github.com/and-digital-cloud/terraform-aws-template)
+# terraform-aws-template [![Build Status](https://github.com/and-digital/terraform-aws-template/workflows/build/badge.svg)](https://github.com/and-digital-cloud/terraform-aws-template/actions)
 
 > A terraform module for creating AWS template resources.
 
