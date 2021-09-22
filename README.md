@@ -66,22 +66,6 @@ module "nexus" {
 
 ```
 
-<!--- BEGIN_TF_DOCS --->
-## Providers
-```
-provider "aws" {
-  region  = "eu-west-1"
-  profile = ""
-}
-
-terraform {
-  backend "s3" {
-  }
-}
-```
-
-## Inputs
-
 ### Table Required Variables
 
 | Variable Name      | Default Value             | Description                                                 |
@@ -122,13 +106,14 @@ It is recommended to use the Terraform `VPC`, `Route53` and `acm` registries for
 |                        |                 |
 
 
+
+<!--- BEGIN_TF_DOCS --->
+## Providers
+
+## Inputs
+
 ## Outputs
 
-| Output Name | value                               |
-| ----------- | ----------------------------------- |
-| dns_name    | aws_lb.load_balancer.*.dns_name     |
-| asg_arn     | aws_autoscaling_group.dev_nexus.arn |
-| efs_arn     | aws_efs_file_system.efs_nexus.arn   |
 <!--- END_TF_DOCS --->
 
 ## License
