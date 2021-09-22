@@ -105,6 +105,7 @@ It is recommended to use the Terraform `VPC`, `Route53` and `acm` registries for
 | # create_load_balancer | false           | Set to true when you have your own load balancer and import the listener_arn                 |
 |                        |                 |
 
+No input.
 
 
 <!--- BEGIN_TF_DOCS --->
